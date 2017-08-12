@@ -3,14 +3,10 @@ import PropTypes from 'prop-types'
 
 export const Exercise = ({ counter, increment, doubleAsync }) => (
   <div style={{ margin: '0 auto' }} >
-    <h2>Exercise: {counter}</h2>
-    <button className='btn btn-primary' onClick={increment}>
-      Increment
-    </button>
-    {' '}
-    <button className='btn btn-secondary' onClick={doubleAsync}>
-      Double (Async)
-    </button>
+    <h2>Exercise:</h2>
+    <div style={{ display: 'none' }}>Counter: {counter}</div>
+    <button className='btn btn-primary' onClick={increment} style={{ display: 'none' }}>Increment</button>
+    <button className='btn btn-secondary' onClick={doubleAsync} style={{ display: 'none' }}>Double Increment</button>
   </div>
 )
 Exercise.propTypes = {
