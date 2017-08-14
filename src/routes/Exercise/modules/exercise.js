@@ -33,24 +33,10 @@ export const doubleAsync = () => {
   }
 }
 
-export function moveNemo (e, x = 0, y = 0) {
-  switch(e.keyCode){
-    case 37: // subtract from x-axis
-      x = x - 5
-      break;
-    case 39: // add to x-axis
-      x = x + 5
-      break;
-    case 38: // add to y-axis
-      y = y + 5
-      break;
-    case 40: // subtract from y-axis
-      y = y - 5
-      break;
-  }
+export function moveNemo (e) {
   return {
     type    : MOVE_NEMO,
-    payload : {x,y}
+    payload : e.keyCode
   }
 }
 
@@ -67,16 +53,30 @@ const ACTION_HANDLERS = {
   [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
   [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2,
   [MOVE_NEMO]            : (state, action) => {
-    console.log(state, action.payload)
-    return state + action.payload
+    const newState = {...state};
+    switch(action.payload){
+      case 37: // subtract from x-axis
+        newState.x-=5
+        break;
+      case 39: // add to x-axis
+        newState.x+=5
+        break;
+      case 38: // subtract from  y-axis
+        newState.y-=5
+        break;
+      case 40: // add to y-axis
+        newState.y+=5
+        break;
+    }
+    return newState
   }
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
-export default function counterReducer (state = initialState, action) {
+const initialState = {x:0,y:0}
+export default function exerciseReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state
