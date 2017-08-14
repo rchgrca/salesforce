@@ -5,14 +5,13 @@ import Nemo from './Nemo'
 
 export const Exercise = ({ counter, increment, doubleAsync, moveNemo }) => {
 
-  console.log(x, y)
 
   return (
     <div style={{ margin: '0 auto' }} >
       <h2>Exercise:</h2>
       <input type="text" onKeyDown={moveNemo}/>
       <div className='waterContainer' style={{ position: 'relative', border: '1px solid red', height: '500px'}}>
-        <Nemo x={x} y={y}/>
+        <Nemo/>
         <Duck/>
       </div>
     </div>
