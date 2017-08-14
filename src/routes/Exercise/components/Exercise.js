@@ -9,7 +9,7 @@ export const Exercise = ({ counter, moveNemo }) => (
     <input type='text' onKeyDown={moveNemo} />
     <div className='waterContainer' style={{ position: 'relative', height: '500px' }} >
       <Nemo counter={counter} />
-      <Duck />
+      <Duck counter={counter} />
     </div>
   </div>
 )

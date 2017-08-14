@@ -47,8 +47,21 @@ export const actions = {
 }
 
 // ------------------------------------
-// Action Handlers
+// Action Handlers and Helpers
 // ------------------------------------
+
+const testCollision = (newState) => {
+  const circle1 = {radius: 50, x: newState.x, y: newState.y}
+  const circle2 = {radius: 50, x: 200, y: 0}
+
+  const dx = circle1.x - circle2.x
+  const dy = circle1.y - circle2.y
+  const distance = Math.sqrt(dx * dx + dy * dy)
+
+  return distance < circle1.radius + circle2.radius ? true : false
+}
+
+
 const ACTION_HANDLERS = {
   [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
   [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2,
@@ -68,6 +81,7 @@ const ACTION_HANDLERS = {
         newState.y += 5
         break
     }
+    newState.hasCollided = testCollision(newState)
     return newState
   }
 }
@@ -75,7 +89,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = { x:0, y:0 }
+const initialState = { x: 0, y: 0, hasCollided: false }
 export default function exerciseReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
