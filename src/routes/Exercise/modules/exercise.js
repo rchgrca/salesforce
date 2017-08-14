@@ -3,6 +3,7 @@
 // ------------------------------------
 export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
 export const COUNTER_DOUBLE_ASYNC = 'COUNTER_DOUBLE_ASYNC'
+export const MOVE_NEMO = 'MOVE_NEMO'
 
 // ------------------------------------
 // Actions
@@ -32,9 +33,31 @@ export const doubleAsync = () => {
   }
 }
 
+export function moveNemo (e, x = 0, y = 0) {
+  switch(e.keyCode){
+    case 37: // subtract from x-axis
+      x = x - 5
+      break;
+    case 39: // add to x-axis
+      x = x + 5
+      break;
+    case 38: // add to y-axis
+      y = y + 5
+      break;
+    case 40: // subtract from y-axis
+      y = y - 5
+      break;
+  }
+  return {
+    type    : MOVE_NEMO,
+    payload : {x,y}
+  }
+}
+
 export const actions = {
   increment,
-  doubleAsync
+  doubleAsync,
+  moveNemo
 }
 
 // ------------------------------------
@@ -42,7 +65,11 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2
+  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2,
+  [MOVE_NEMO]            : (state, action) => {
+    console.log(state, action.payload)
+    return state + action.payload
+  }
 }
 
 // ------------------------------------
