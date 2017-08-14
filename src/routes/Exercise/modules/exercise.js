@@ -53,20 +53,20 @@ const ACTION_HANDLERS = {
   [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
   [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2,
   [MOVE_NEMO]            : (state, action) => {
-    const newState = {...state};
-    switch(action.payload){
+    const newState = { ...state }
+    switch (action.payload) {
       case 37: // subtract from x-axis
-        newState.x-=5
-        break;
+        newState.x -= 5
+        break
       case 39: // add to x-axis
-        newState.x+=5
-        break;
+        newState.x += 5
+        break
       case 38: // subtract from  y-axis
-        newState.y-=5
-        break;
+        newState.y -= 5
+        break
       case 40: // add to y-axis
-        newState.y+=5
-        break;
+        newState.y += 5
+        break
     }
     return newState
   }
@@ -75,7 +75,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = {x:0,y:0}
+const initialState = { x:0, y:0 }
 export default function exerciseReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
