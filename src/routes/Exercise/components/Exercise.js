@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Duck from './Duck'
 import Nemo from './Nemo'
+import Dori from './Dori'
 
 export const Exercise = ({ counter, moveNemo }) => (
   <div style={{ margin: '0 auto' }} >
@@ -9,7 +9,7 @@ export const Exercise = ({ counter, moveNemo }) => (
     <input type='text' onKeyDown={moveNemo} />
     <div className='waterContainer' style={{ position: 'relative', height: '500px' }} >
       <Nemo counter={counter} />
-      <Duck counter={counter} />
+      <Dori counter={counter} />
     </div>
   </div>
 )
