@@ -54,14 +54,14 @@ export const actions = {
 const testCollision = (newState, e) => {
   const doryX = e.srcElement.getElementsByClassName('dori')[0].offsetLeft
   const doryY = e.srcElement.getElementsByClassName('dori')[0].offsetTop
-  var rect1 = {x: newState.x, y: newState.y, width: 150, height: 107}
-  var rect2 = {x: doryX, y: doryY, width: 150, height: 107}
+  var rect1 = { x: newState.x, y: newState.y, width: 150, height: 107 }
+  var rect2 = { x: doryX, y: doryY, width: 150, height: 107 }
 
   if (rect1.x < rect2.x + rect2.width &&
      rect1.x + rect1.width > rect2.x &&
      rect1.y < rect2.y + rect2.height &&
      rect1.height + rect1.y > rect2.y) {
-       return true
+    return true
   }
   return false
 }
