@@ -6,7 +6,7 @@ import Dori from './Dori'
 export const Exercise = ({ counter, moveNemo }) => {
   window.addEventListener('keydown', moveNemo)
   return (
-    <div className='exercseContainer' >
+    <div className='exerciseContainer' >
       <h2>Exercise:</h2>
       <div className='waterContainer'>
         <Nemo counter={counter} />
