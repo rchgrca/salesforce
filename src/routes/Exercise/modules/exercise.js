@@ -37,7 +37,7 @@ export function moveNemo (e) {
   e.preventDefault()
   return {
     type    : MOVE_NEMO,
-    payload : e.keyCode
+    payload : e
   }
 }
 
@@ -51,24 +51,27 @@ export const actions = {
 // Action Handlers and Helpers
 // ------------------------------------
 
-const testCollision = (newState) => {
-  const circle1 = {radius: 50, x: newState.x, y: newState.y}
-  const circle2 = {radius: 75, x: 200, y: 0}
+const testCollision = (newState, e) => {
+  const doryX = e.srcElement.getElementsByClassName('dori')[0].offsetLeft
+  const doryY = e.srcElement.getElementsByClassName('dori')[0].offsetTop
+  var rect1 = {x: newState.x, y: newState.y, width: 150, height: 107}
+  var rect2 = {x: doryX, y: doryY, width: 150, height: 107}
 
-  const dx = circle1.x - circle2.x
-  const dy = circle1.y - circle2.y
-  const distance = Math.sqrt(dx * dx + dy * dy)
-
-  return distance < circle1.radius + circle2.radius ? true : false
+  if (rect1.x < rect2.x + rect2.width &&
+     rect1.x + rect1.width > rect2.x &&
+     rect1.y < rect2.y + rect2.height &&
+     rect1.height + rect1.y > rect2.y) {
+       return true
+  }
+  return false
 }
-
 
 const ACTION_HANDLERS = {
   [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
   [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2,
   [MOVE_NEMO]            : (state, action) => {
     const newState = { ...state }
-    switch (action.payload) {
+    switch (action.payload.keyCode) {
       case 37: // subtract from x-axis
         newState.x -= 5
         break
@@ -82,7 +85,7 @@ const ACTION_HANDLERS = {
         newState.y += 5
         break
     }
-    newState.hasCollided = testCollision(newState)
+    newState.hasCollided = testCollision(newState, action.payload)
     return newState
   }
 }
