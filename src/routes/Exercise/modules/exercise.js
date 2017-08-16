@@ -34,6 +34,7 @@ export const doubleAsync = () => {
 }
 
 export function moveNemo (e) {
+  e.preventDefault()
   return {
     type    : MOVE_NEMO,
     payload : e.keyCode
