@@ -1,8 +1,6 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { Exercise } from 'routes/Exercise/components/Exercise'
-import { Nemo } from 'routes/Exercise/components/Nemo'
-import { Dori } from 'routes/Exercise/components/Dori'
 import { shallow } from 'enzyme'
 
 describe('(Component) Exercise', () => {
@@ -35,5 +33,4 @@ describe('(Component) Exercise', () => {
     expect(_wrapper.find('.waterContainer').html()).to.contain('img class="nemo"')
     expect(_wrapper.find('.waterContainer').html()).to.contain('img class="dori"')
   })
-
 })
